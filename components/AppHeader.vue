@@ -41,20 +41,22 @@
 	import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 	import { whenever } from '@vueuse/core'
 
-	// const breakpoints = useBreakpoints(breakpointsTailwind)
-	// const desktop = breakpoints.greaterOrEqual('md')
-	// const mobile = breakpoints.smaller('md')
+	const breakpoints = useBreakpoints(breakpointsTailwind)
+	const desktop = breakpoints.greaterOrEqual('md')
+	const mobile = breakpoints.smaller('md')
 
 	const menu = ref(true)
 	const navigation = ref(null)
 
-	// whenever(desktop, () => {
-	// 	menu.value = true
-	// })
+	if (breakpoints) {
+		whenever(desktop, () => {
+			menu.value = true
+		})
 
-	// whenever(mobile, () => {
-	// 	menu.value = false
-	// })
+		whenever(mobile, () => {
+			menu.value = false
+		})
+	}
 
 	watch(menu, () => {
 		if (menu.value) {
