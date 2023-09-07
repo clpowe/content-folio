@@ -1,7 +1,9 @@
 <template>
-	<header class="relative">
+	<header
+		class="relative border-b-3 border-solid border-black px-4 items-center"
+	>
 		<div
-			class="max-w-7xl mx-auto px-4 flex justify-between items-center z-20 relative bg-white"
+			class="max-w-7xl mx-auto px-4 flex justify-between items-center z-20 relative bg-white h-full md:h-auto"
 		>
 			<h1 class="uppercase font-700 fluid font-roboto leading-none">
 				Chris Powe
@@ -13,11 +15,11 @@
 		</div>
 
 		<nav
-			class="reletive w-full mx-auto inline justify-center md:justify-end z-10"
+			class="reletive w-full max-w-7xl mx-auto inline justify-center md:justify-end z-10"
 		>
 			<ul
 				ref="navigation"
-				class="flex uppercase font-roboto gap-4 font-900 items-center flex-col md:flex-row absolute md:relative bg-white w-full md:justify-end z-10 border-b-3 border-solid border-black transform px-4 translate-y-0"
+				class="flex max uppercase font-roboto gap-4 font-900 items-center flex-col md:flex-row absolute md:relative bg-white w-full md:justify-end z-10 text-2xl"
 			>
 				<li>
 					<NuxtLink to="/">home</NuxtLink>
@@ -45,16 +47,20 @@
 	const desktop = breakpoints.greaterOrEqual('md')
 	const mobile = breakpoints.smaller('md')
 
-	const menu = ref(true)
+	const menu = ref(false)
 	const navigation = ref(null)
 
 	if (breakpoints) {
 		whenever(desktop, () => {
 			menu.value = true
+
+			animate(navigation.value, { transform: 'translateY(0)' })
 		})
 
 		whenever(mobile, () => {
 			menu.value = false
+
+			animate(navigation.value, { transform: 'translateY(-110%)' })
 		})
 	}
 
